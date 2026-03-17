@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% load humanize %}
+{% block content %}
+<div class="page-hero mb-4">
+  <div>
+    <p class="eyebrow mb-1">Administration</p>
+    <h1 class="h3 mb-1">Dashboard commandes</h1>
+    <div class="small text-muted">Suivi des commandes et statuts en temps reel.</div>
+  </div>
+  <div class="page-hero-badge">Gestion express</div>
+</div>
+<div class="card p-3">
+  <div class="table-responsive">
+    <table class="table align-middle">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Client</th>
+          <th>Adresse</th>
+          <th>Produits</th>
+          <th>Total</th>
+          <th>Statut</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for order in orders %}
+        <tr>
+          <td>#{{ order.id }}</td>
+          <td>{{ order.customer.full_name }}<br><span class="small text-muted">{{ order.customer.phone }}</span></td>
+          <td>{{ order.customer.address }}, {{ order.customer.city }}</td>
+          <td>
+            <ul class="list-unstyled small mb-0">
+              {% for item in order.items.all %}
+              <li>{{ item.product_name }} x {{ item.quantity }}</li>
+              {% endfor %}
+            </ul>
+          </td>
+          <td>{{ order.total_amount|floatformat:0|intcomma }} FCFA</td>
+          <td><span class="badge text-bg-light">{{ order.get_status_display }}</span></td>
+          <td>
+            <form method="post" class="d-flex gap-2 align-items-center">
+              {% csrf_token %}
+              <input type="hidden" name="order_id" value="{{ order.id }}">
+              <select class="form-select form-select-sm" name="status">
+                {% for value, label in status_choices %}
+                <option value="{{ value }}" {% if order.status == value %}selected{% endif %}>{{ label }}</option>
+                {% endfor %}
+              </select>
+              <button class="btn btn-outline-dark btn-sm" type="submit">Mettre a jour</button>
+            </form>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}
+

@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="card p-5 text-center summary-card">
+  <h1 class="h3 mb-3">Merci pour votre commande</h1>
+  <p class="lead">Votre commande a ete envoyee avec succes.</p>
+  <p class="text-muted">Numero de commande: #{{ order.id }}</p>
+  <div class="d-flex justify-content-center gap-2 flex-wrap">
+    <a class="btn btn-accent" href="{% url 'shop' %}">Continuer vos achats</a>
+    <a class="btn btn-outline-dark" target="_blank" href="https://wa.me/2250171532149?text=Bonjour%20Doriane%20World%2C%20je%20confirme%20ma%20commande%20%23{{ order.id }}.">Envoyer sur WhatsApp</a>
+  </div>
+</div>
+{% endblock %}
+

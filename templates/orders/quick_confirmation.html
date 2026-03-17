@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="card p-5 text-center summary-card">
+  <h1 class="h3 mb-3">Commande envoyee</h1>
+  <p class="lead">Votre demande a ete transmise a l'administrateur.</p>
+  <div class="mx-auto" style="max-width: 420px;">
+    <ul class="list-unstyled text-start">
+      {% for item in items %}
+      <li>{{ item.name }} x {{ item.qty }}</li>
+      {% endfor %}
+    </ul>
+  </div>
+  <div class="d-flex justify-content-center gap-2 flex-wrap mt-3">
+    <a class="btn btn-accent" href="{% url 'shop' %}">Retour boutique</a>
+    <a class="btn btn-outline-dark" target="_blank" href="https://wa.me/2250171532149?text=Bonjour%20Doriane%20World%2C%20je%20confirme%20ma%20commande%20rapide.">Confirmer sur WhatsApp</a>
+  </div>
+</div>
+{% endblock %}
+

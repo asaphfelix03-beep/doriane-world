@@ -1,0 +1,117 @@
+{% extends 'base.html' %}
+{% load humanize %}
+{% block content %}
+<section class="shop-hero reveal">
+  <div class="row align-items-center g-4">
+    <div class="col-lg-7">
+      <p class="eyebrow">Boutique</p>
+      <h1 class="display-6">Tout l'univers Doriane World</h1>
+      <p class="lead text-muted">Alimentation, beaute, accessoires. Commande rapide et service WhatsApp reactif.</p>
+      <form class="search-form mt-3" method="get">
+        <input class="form-control search-input" type="search" name="q" value="{{ q }}" placeholder="Rechercher un produit ou une categorie">
+        <button class="btn btn-dark" type="submit">Rechercher</button>
+      </form>
+      <div class="chip-group mt-3">
+        <a class="chip {% if not active_category and not q %}chip-clear{% endif %}" href="{% url 'shop' %}">Tous</a>
+        {% for category in categories %}
+        <a class="chip {% if active_category and active_category.id == category.id %}chip-clear{% endif %}" href="{% url 'category_detail' category.slug %}">{{ category.name }}</a>
+        {% endfor %}
+      </div>
+    </div>
+    <div class="col-lg-5">
+      <div class="shop-hero-card">
+        <div class="shop-hero-title">Commande WhatsApp</div>
+        <p class="text-muted mb-3">Envoyez votre panier et recevez une confirmation en temps reel.</p>
+        <div class="d-flex gap-2 flex-wrap">
+          <a class="btn btn-accent" href="{% url 'cart_detail' %}">Voir mon panier</a>
+          <a class="btn btn-outline-dark" target="_blank" rel="noopener" href="https://wa.me/2250171532149?text=Bonjour%20Doriane%20World%2C%20je%20veux%20un%20conseil%20produit.">Ecrire sur WhatsApp</a>
+        </div>
+        <div class="shop-hero-meta">
+          <span>Livraison 24-48h</span>
+          <span>Paiement a la livraison</span>
+        </div>
+      </div>
+      <div class="quick-whatsapp-card mt-3">
+        <div class="quick-title">Besoin d'aide ?</div>
+        <div class="small text-muted">Une conseillere disponible pour vous guider.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="row g-4 mt-4">
+  <div class="col-lg-3">
+    <div class="filter-panel glass-panel sticky-top">
+      <div class="panel-title">Categories</div>
+      <div class="filter-tags">
+        <a class="filter-link {% if not active_category %}active{% endif %}" href="{% url 'shop' %}">Toutes</a>
+        {% for category in categories %}
+        <a class="filter-link {% if active_category and active_category.id == category.id %}active{% endif %}" href="{% url 'category_detail' category.slug %}">{{ category.name }}</a>
+        {% endfor %}
+      </div>
+      <div class="divider-line"></div>
+      <div class="panel-title">Nos engagements</div>
+      <ul class="benefits compact">
+        <li>Authenticite des produits</li>
+        <li>Stock verifie chaque jour</li>
+        <li>Support rapide par WhatsApp</li>
+      </ul>
+    </div>
+  </div>
+  <div class="col-lg-9">
+    <div class="shop-header d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-2">
+      <div>
+        <div class="eyebrow">Selection</div>
+        <h2 class="h5 mb-1">Produits disponibles</h2>
+        <div class="small text-muted">{{ products|length }} produits</div>
+      </div>
+      <div class="chip-group">
+        {% if q %}
+        <a class="chip chip-clear" href="{% url 'shop' %}">Effacer: {{ q }}</a>
+        {% endif %}
+        {% if active_category %}
+        <a class="chip chip-clear" href="{% url 'shop' %}">Effacer: {{ active_category.name }}</a>
+        {% endif %}
+      </div>
+    </div>
+    <div class="row g-3 mt-2">
+      {% for product in products %}
+      <div class="col-md-6 col-xl-4">
+        <div class="card product-card h-100 reveal">
+          <a href="{{ product.get_absolute_url }}" class="product-thumb">
+            {% if product.is_promo %}
+            <span class="badge-tag promo">Promo</span>
+            {% elif product.is_popular %}
+            <span class="badge-tag popular">Populaire</span>
+            {% endif %}
+            {% if product.image %}
+            <img src="{{ product.image.url }}" alt="{{ product.name }}">
+            {% else %}
+            <div class="img-placeholder">Image</div>
+            {% endif %}
+          </a>
+          <div class="card-body">
+            <div class="product-meta">{{ product.category.name }}</div>
+            <h3 class="h6 mb-2">{{ product.name }}</h3>
+            <p class="small text-muted mb-2">{{ product.description|truncatechars:70 }}</p>
+            <div class="price">{{ product.price|floatformat:0|intcomma }} FCFA</div>
+          </div>
+          <div class="card-footer bg-transparent border-0 d-flex gap-2">
+            <a class="btn btn-outline-dark btn-sm" href="{{ product.get_absolute_url }}">Details</a>
+            <form method="post" action="{% url 'add_to_cart' product.id %}">
+              {% csrf_token %}
+              <input type="hidden" name="quantity" value="1">
+              <button class="btn btn-dark btn-sm" type="submit">Ajouter</button>
+            </form>
+          </div>
+        </div>
+      </div>
+      {% empty %}
+      <div class="col-12">
+        <div class="alert alert-light">Aucun produit trouve.</div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% endblock %}

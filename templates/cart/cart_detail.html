@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% load humanize %}
+{% block content %}
+<div class="page-hero mb-4">
+  <div>
+    <p class="eyebrow mb-1">Panier</p>
+    <h1 class="h3 mb-1">Votre panier</h1>
+    <div class="small text-muted">Modifiez les quantites ou commandez en 1 clic.</div>
+  </div>
+  <a class="btn btn-outline-dark btn-sm" href="{% url 'shop' %}">Continuer achats</a>
+</div>
+{% if items %}
+<div class="table-responsive">
+  <table class="table align-middle cart-table">
+    <thead>
+      <tr>
+        <th>Produit</th>
+        <th>Prix</th>
+        <th>Quantite</th>
+        <th>Total</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in items %}
+      <tr>
+        <td>
+          <div class="d-flex align-items-center gap-3">
+            <div class="thumb-sm">
+              {% if item.product.image %}
+              <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}">
+              {% else %}
+              <div class="img-placeholder">Image</div>
+              {% endif %}
+            </div>
+            <div>
+              <div class="fw-semibold">{{ item.product.name }}</div>
+              <div class="small text-muted">{{ item.product.category.name }}</div>
+            </div>
+          </div>
+        </td>
+        <td>{{ item.product.price|floatformat:0|intcomma }} FCFA</td>
+        <td>
+          <form method="post" action="{% url 'update_cart' %}" class="d-flex gap-2">
+            {% csrf_token %}
+            <input type="hidden" name="item_id" value="{{ item.id }}">
+            <input class="form-control form-control-sm" type="number" name="quantity" min="1" max="{{ item.product.stock }}" value="{{ item.quantity }}">
+            <button class="btn btn-outline-dark btn-sm" type="submit">Maj</button>
+          </form>
+        </td>
+        <td>{{ item.line_total|floatformat:0|intcomma }} FCFA</td>
+        <td>
+          <form method="post" action="{% url 'remove_from_cart' item.id %}">
+            {% csrf_token %}
+            <button class="btn btn-link text-danger" type="submit">Supprimer</button>
+          </form>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+<div class="summary-card d-flex justify-content-between align-items-center">
+  <div class="h5 mb-0">Total: {{ total|floatformat:0|intcomma }} FCFA</div>
+  <a class="btn btn-accent" href="{% url 'checkout' %}">Passer commande</a>
+</div>
+<div class="summary-actions mt-3 d-flex gap-2 flex-wrap">
+  <a class="btn btn-dark" href="{% url 'quick_order_whatsapp' %}">Commander via WhatsApp</a>
+  <a class="btn btn-outline-dark" href="{% url 'quick_order_email' %}">Commander via Email</a>
+</div>
+<div class="small text-muted mt-2">
+  Envoi instantane a l'administrateur avec produits et quantites.
+</div>
+{% else %}
+<div class="alert alert-light">Votre panier est vide.</div>
+<a class="btn btn-outline-dark" href="{% url 'shop' %}">Retour boutique</a>
+{% endif %}
+{% endblock %}
+
