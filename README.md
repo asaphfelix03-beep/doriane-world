@@ -1,4 +1,4 @@
-# Doriane World
+# Doriane's World
 
 E-commerce Django pour produits alimentaires et beaute.
 

@@ -108,6 +108,6 @@ EMAIL_BACKEND = os.getenv(
 )
 DEFAULT_FROM_EMAIL = os.getenv(
     "DEFAULT_FROM_EMAIL",
-    "Doriane World <no-reply@dorianeworld.local>",
+    "Doriane's World <no-reply@dorianeworld.local>",
 )
 WHATSAPP_NUMBER = os.getenv("WHATSAPP_NUMBER", "2250171532149")
