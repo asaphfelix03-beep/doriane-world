@@ -1,7 +1,10 @@
 Django
 djangorestframework
 Pillow
-gunicorn
-whitenoise
-dj-database-url
+sqlparse
 psycopg2-binary
+dj-database-url
+django-environ
+tzdata
+asgiref
+gunicorn

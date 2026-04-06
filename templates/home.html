@@ -1,239 +1,257 @@
 {% extends 'base.html' %}
 {% load humanize %}
 {% block content %}
-<section class="hero reveal">
-  <div class="row align-items-center">
-    <div class="col-lg-7">
-      <p class="eyebrow">Doriane World</p>
-      <h1 class="display-5 hero-title">Bienvenue sur Doriane World</h1>
-      <p class="lead hero-lead">Produits alimentaires et beaute, selection soignee, commandes rapides.</p>
-      <div class="d-flex gap-2 hero-actions">
-        <a class="btn btn-accent" href="{% url 'shop' %}">Explorer la boutique</a>
-        <a class="btn btn-outline-dark" href="#categories">Voir les categories</a>
-      </div>
-      <div class="hero-chips">
-        <span class="chip">Livraison rapide</span>
-        <span class="chip">Paiement a la livraison</span>
-        <span class="chip">Nouveautes chaque semaine</span>
-      </div>
-    </div>
-    <div class="col-lg-5">
-      <div class="hero-visual">
-        <img src="/media/products/cerelac-table.jpg" alt="Selection Doriane World">
-        <div class="hero-visual-badge">Selection du moment</div>
-      </div>
-      <div class="hero-mini mt-3">
-        <img src="/media/products/hollywood-gum-pack.jpg" alt="Gourmandises">
-      </div>
-      <div class="hero-card mt-3">
-        <div class="hero-card-title">Promos du moment</div>
-        <div class="hero-card-sub">Des prix doux pour un panier malin.</div>
-        <div class="stat-row">
-          <div class="stat-card">
-            <strong>+120</strong>
-            Produits soignes
+<div class="home-page">
+  <section class="home-hero reveal">
+    <div class="row g-4 align-items-center">
+      <div class="col-lg-6">
+        <span class="home-badge">Doriane World</span>
+        <h1 class="home-title">Votre marche premium, livre avec douceur.</h1>
+        <p class="home-lead">Alimentation selectionnee, beaute authentique, commandes simples sur WhatsApp. Doriane World rassemble vos essentiels dans un univers chaleureux.</p>
+        <div class="d-flex gap-2 home-actions">
+          <a class="btn btn-accent" href="{% url 'shop' %}">Explorer la boutique</a>
+          <a class="btn btn-outline-dark" href="#categories">Voir les categories</a>
+        </div>
+        <div class="home-pills">
+          <span class="home-pill">Livraison Abidjan 24-48h</span>
+          <span class="home-pill">Paiement a la livraison</span>
+          <span class="home-pill">Conseils personnalises</span>
+        </div>
+        <div class="home-stats">
+          <div class="home-stat">
+            <div class="home-stat-label">Produits selectionnes</div>
+            <div class="home-stat-value">+120</div>
           </div>
-          <div class="stat-card">
-            <strong>24h</strong>
-            Preparation rapide
+          <div class="home-stat">
+            <div class="home-stat-label">Preparation</div>
+            <div class="home-stat-value">24h</div>
+          </div>
+          <div class="home-stat">
+            <div class="home-stat-label">Satisfaction</div>
+            <div class="home-stat-value">4,9/5</div>
           </div>
         </div>
       </div>
-    </div>
-  </div>
-</section>
-
-<section class="service-strip mt-4 reveal">
-  <div class="service-item">
-    <div class="service-title">Commande express</div>
-    <div class="service-sub">Un message WhatsApp et c'est lance.</div>
-  </div>
-  <div class="service-item">
-    <div class="service-title">Stock verifie</div>
-    <div class="service-sub">Produits disponibles, confirmation rapide.</div>
-  </div>
-  <div class="service-item">
-    <div class="service-title">Livraison planifiee</div>
-    <div class="service-sub">Choisissez votre lieu et votre heure.</div>
-  </div>
-</section>
-
-<section class="mt-5 highlight-section reveal">
-  <div class="row g-4 align-items-center">
-    <div class="col-lg-6">
-      <div class="highlight-card">
-        <p class="eyebrow mb-2">Collection du moment</p>
-        <h2 class="mb-3">Gourmandises et beaute pour le quotidien</h2>
-        <p class="text-muted">Une selection soignee, des essentiels fiables, et un service rapide qui fait la difference.</p>
-        <div class="d-flex gap-2 flex-wrap">
-          <a class="btn btn-dark" href="{% url 'shop' %}">Voir la collection</a>
-          <a class="btn btn-outline-dark" href="{% url 'shop' %}?q=Cerelac">Voir Cerelac</a>
+      <div class="col-lg-6">
+        <div class="home-collage">
+          <div class="collage-item collage-main">
+            <img src="/media/products/cerelac-table.jpg" alt="Panier gourmand Doriane World">
+            <span class="collage-tag">Selection du jour</span>
+          </div>
+          <div class="collage-item">
+            <img src="/media/products/hollywood-gum-pack.jpg" alt="Gourmandises">
+          </div>
+          <div class="collage-item">
+            <img src="/media/products/cerelac.jpg" alt="Cerelac">
+          </div>
+          <div class="collage-note">
+            <div class="collage-note-title">Panier malin</div>
+            <p class="mb-0">Bons plans, nouveautes, et conseils de Doriane pour acheter mieux.</p>
+            <a class="btn btn-dark btn-sm mt-2" href="{% url 'shop' %}">Voir les offres</a>
+          </div>
         </div>
       </div>
     </div>
-    <div class="col-lg-6">
-      <div class="highlight-image">
-        <img src="/media/products/cerelac.jpg" alt="Cerelac Doriane World">
-      </div>
-    </div>
-  </div>
-</section>
+  </section>
 
-<section id="categories" class="mt-5">
-  <div class="section-title d-flex justify-content-between align-items-end">
-    <h2>Categories</h2>
-    <a href="{% url 'shop' %}" class="text-decoration-none">Tout voir</a>
-  </div>
-  <div class="row g-3">
-    {% for category in categories %}
-    <div class="col-md-4">
-      <a class="category-card reveal" href="{% url 'category_detail' category.slug %}">
-        <div class="category-name">{{ category.name }}</div>
-        <div class="category-desc">{{ category.description|default:"Selection Doriane World." }}</div>
-      </a>
+  <section class="home-steps mt-4 reveal">
+    <div class="home-section-head">
+      <div>
+        <p class="section-kicker">Commande facile</p>
+        <h2>Trois etapes pour se faire livrer</h2>
+      </div>
+      <a href="{% url 'shop' %}" class="text-decoration-none">Commencer</a>
     </div>
-    {% endfor %}
-  </div>
-</section>
+    <div class="home-steps-grid">
+      <div class="step-card">
+        <div class="step-number">1</div>
+        <h3>Choisissez vos essentiels</h3>
+        <p>Des produits alimentaires et beaute tries, avec des fiches claires.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-number">2</div>
+        <h3>Confirmez sur WhatsApp</h3>
+        <p>Un message, une confirmation rapide, et un suivi simple.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-number">3</div>
+        <h3>Recevez chez vous</h3>
+        <p>Livraison planifiee, paiement a la livraison, service attentionne.</p>
+      </div>
+    </div>
+  </section>
 
-<section class="mt-5">
-  <div class="section-title d-flex justify-content-between align-items-end">
-    <h2>Pourquoi Doriane World</h2>
-    <a href="{% url 'shop' %}" class="text-decoration-none">Decouvrir</a>
-  </div>
-  <div class="row g-3">
-    <div class="col-md-4">
-      <div class="feature-card reveal">
-        <div class="feature-title">Selection rigoureuse</div>
-        <p class="text-muted">Chaque produit est choisi pour sa qualite et son utilite au quotidien.</p>
+  <section id="categories" class="mt-5 reveal">
+    <div class="home-section-head">
+      <div>
+        <p class="section-kicker">Nos univers</p>
+        <h2>Categories principales</h2>
       </div>
+      <a href="{% url 'shop' %}" class="text-decoration-none">Tout voir</a>
     </div>
-    <div class="col-md-4">
-      <div class="feature-card reveal">
-        <div class="feature-title">Livraison rapide</div>
-        <p class="text-muted">Preparation en 24h et suivi simple pour chaque commande.</p>
-      </div>
-    </div>
-    <div class="col-md-4">
-      <div class="feature-card reveal">
-        <div class="feature-title">Service attentionne</div>
-        <p class="text-muted">Une equipe disponible sur WhatsApp pour repondre vite.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="mt-5">
-  <div class="section-title d-flex justify-content-between align-items-end">
-    <h2>Produits populaires</h2>
-    <a href="{% url 'shop' %}" class="text-decoration-none">Voir tout</a>
-  </div>
-  <div class="row g-3">
-    {% for product in popular_products %}
-    <div class="col-md-4 col-lg-3">
-      <div class="card product-card h-100 reveal">
-        <a href="{{ product.get_absolute_url }}" class="product-thumb">
-          {% if product.is_promo %}
-          <span class="badge-tag promo">Promo</span>
-          {% elif product.is_popular %}
-          <span class="badge-tag popular">Populaire</span>
-          {% endif %}
-          {% if product.image %}
-          <img src="{{ product.image.url }}" alt="{{ product.name }}">
-          {% else %}
-          <div class="img-placeholder">Image</div>
-          {% endif %}
+    <div class="row g-3">
+      {% for category in categories %}
+      <div class="col-md-4">
+        <a class="category-card category-card-home" href="{% url 'category_detail' category.slug %}">
+          <div class="category-name">{{ category.name }}</div>
+          <div class="category-desc">{{ category.description|default:"Selection Doriane World." }}</div>
+          <span class="category-link">Explorer</span>
         </a>
-        <div class="card-body">
-          <div class="product-meta">{{ product.category.name }}</div>
-          <h3 class="h6 mb-2">{{ product.name }}</h3>
-          <div class="price">{{ product.price|floatformat:0|intcomma }} FCFA</div>
+      </div>
+      {% endfor %}
+    </div>
+  </section>
+
+  <section class="home-highlight mt-5 reveal">
+    <div class="row g-4 align-items-center">
+      <div class="col-lg-6">
+        <div class="highlight-panel">
+          <p class="section-kicker">Collection du moment</p>
+          <h2>Gourmandises et beaute pour chaque jour</h2>
+          <p>Des marques fiables, des essentiels du quotidien, et des petits plaisirs choisis avec soin.</p>
+          <div class="d-flex gap-2 flex-wrap">
+            <a class="btn btn-dark" href="{% url 'shop' %}">Voir la collection</a>
+            <a class="btn btn-outline-dark" href="{% url 'shop' %}?q=Cerelac">Decouvrir Cerelac</a>
+          </div>
+          <ul class="highlight-list">
+            <li>Produits authentiques et stock verifie.</li>
+            <li>Conseils pour constituer un panier malin.</li>
+            <li>Service client reactif sur WhatsApp.</li>
+          </ul>
         </div>
-        <div class="card-footer bg-transparent border-0 d-flex gap-2">
-          <a class="btn btn-outline-dark btn-sm" href="{{ product.get_absolute_url }}">Details</a>
-          <form method="post" action="{% url 'add_to_cart' product.id %}">
-            {% csrf_token %}
-            <input type="hidden" name="quantity" value="1">
-            <button class="btn btn-dark btn-sm" type="submit">Ajouter</button>
-          </form>
+      </div>
+      <div class="col-lg-6">
+        <div class="highlight-media">
+          <img src="/media/products/cerelac.jpg" alt="Selection Doriane World">
+          <div class="highlight-badge">Nouveaute</div>
         </div>
       </div>
     </div>
-    {% endfor %}
-  </div>
-</section>
+  </section>
 
-<section class="mt-5">
-  <div class="section-title d-flex justify-content-between align-items-end">
-    <h2>Dans l'univers Doriane</h2>
-    <a href="{% url 'shop' %}" class="text-decoration-none">Suivre nos actus</a>
-  </div>
-  <div class="gallery-grid">
-    <div class="gallery-card reveal">
-      <img src="/media/products/bonbon-xo.jpg" alt="Bonbon X.O">
+  <section class="mt-5">
+    <div class="home-section-head">
+      <div>
+        <p class="section-kicker">Tendances</p>
+        <h2>Produits populaires</h2>
+      </div>
+      <a href="{% url 'shop' %}" class="text-decoration-none">Voir tout</a>
     </div>
-    <div class="gallery-card reveal">
-      <img src="/media/products/hollywood-gum.jpg" alt="Chewing gum Hollywood">
-    </div>
-    <div class="gallery-card reveal">
-      <img src="/media/products/cerelac-table.jpg" alt="Selection Doriane">
-    </div>
-  </div>
-</section>
-
-<section class="mt-5">
-  <div class="section-title d-flex justify-content-between align-items-end">
-    <h2>Promotions</h2>
-    <a href="{% url 'shop' %}" class="text-decoration-none">Voir tout</a>
-  </div>
-  <div class="row g-3">
-    {% for product in promo_products %}
-    <div class="col-md-4 col-lg-3">
-      <div class="card product-card h-100 reveal">
-        <a href="{{ product.get_absolute_url }}" class="product-thumb">
-          {% if product.is_promo %}
-          <span class="badge-tag promo">Promo</span>
-          {% elif product.is_popular %}
-          <span class="badge-tag popular">Populaire</span>
-          {% endif %}
-          {% if product.image %}
-          <img src="{{ product.image.url }}" alt="{{ product.name }}">
-          {% else %}
-          <div class="img-placeholder">Image</div>
-          {% endif %}
-        </a>
-        <div class="card-body">
-          <div class="product-meta">{{ product.category.name }}</div>
-          <h3 class="h6 mb-2">{{ product.name }}</h3>
-          <div class="price">{{ product.price|floatformat:0|intcomma }} FCFA</div>
-        </div>
-        <div class="card-footer bg-transparent border-0 d-flex gap-2">
-          <a class="btn btn-outline-dark btn-sm" href="{{ product.get_absolute_url }}">Details</a>
-          <form method="post" action="{% url 'add_to_cart' product.id %}">
-            {% csrf_token %}
-            <input type="hidden" name="quantity" value="1">
-            <button class="btn btn-dark btn-sm" type="submit">Ajouter</button>
-          </form>
+    <div class="row g-3">
+      {% for product in popular_products %}
+      <div class="col-md-4 col-lg-3">
+        <div class="card product-card h-100 reveal">
+          <a href="{{ product.get_absolute_url }}" class="product-thumb">
+            {% if product.is_promo %}
+            <span class="badge-tag promo">Promo</span>
+            {% elif product.is_popular %}
+            <span class="badge-tag popular">Populaire</span>
+            {% endif %}
+            {% if product.image %}
+            <img src="{{ product.image.url }}" alt="{{ product.name }}">
+            {% else %}
+            <div class="img-placeholder">Image</div>
+            {% endif %}
+          </a>
+          <div class="card-body">
+            <div class="product-meta">{{ product.category.name }}</div>
+            <h3 class="h6 mb-2">{{ product.name }}</h3>
+            <div class="price">{{ product.price|floatformat:0|intcomma }} FCFA</div>
+          </div>
+          <div class="card-footer bg-transparent border-0 d-flex gap-2">
+            <a class="btn btn-outline-dark btn-sm" href="{{ product.get_absolute_url }}">Details</a>
+            <form method="post" action="{% url 'add_to_cart' product.id %}">
+              {% csrf_token %}
+              <input type="hidden" name="quantity" value="1">
+              <button class="btn btn-dark btn-sm" type="submit">Ajouter</button>
+            </form>
+          </div>
         </div>
       </div>
+      {% endfor %}
     </div>
-    {% endfor %}
-  </div>
-</section>
+  </section>
 
-<section class="mt-5">
-  <div class="newsletter-card reveal">
+  <section class="promo-band mt-5 reveal">
     <div>
-      <p class="eyebrow mb-2">Nouveautes</p>
-      <h2 class="mb-2">Recevez nos offres en avant-premiere</h2>
-      <p class="text-muted mb-0">Une fois par semaine, des bons plans et des nouveaux produits.</p>
+      <p class="section-kicker">Promotions</p>
+      <h2>Prix doux pour un panier malin.</h2>
+      <p class="mb-0">Des remises claires sur vos essentiels, sans compromis sur la qualite.</p>
     </div>
-    <form class="newsletter-form" method="get">
-      <input class="form-control" type="email" placeholder="Votre email">
-      <button class="btn btn-accent" type="submit">Je m'inscris</button>
-    </form>
-  </div>
-</section>
+    <a href="{% url 'shop' %}" class="btn btn-accent">Voir toutes les promos</a>
+  </section>
+
+  <section class="mt-4">
+    <div class="row g-3">
+      {% for product in promo_products %}
+      <div class="col-md-4 col-lg-3">
+        <div class="card product-card h-100 reveal">
+          <a href="{{ product.get_absolute_url }}" class="product-thumb">
+            {% if product.is_promo %}
+            <span class="badge-tag promo">Promo</span>
+            {% elif product.is_popular %}
+            <span class="badge-tag popular">Populaire</span>
+            {% endif %}
+            {% if product.image %}
+            <img src="{{ product.image.url }}" alt="{{ product.name }}">
+            {% else %}
+            <div class="img-placeholder">Image</div>
+            {% endif %}
+          </a>
+          <div class="card-body">
+            <div class="product-meta">{{ product.category.name }}</div>
+            <h3 class="h6 mb-2">{{ product.name }}</h3>
+            <div class="price">{{ product.price|floatformat:0|intcomma }} FCFA</div>
+          </div>
+          <div class="card-footer bg-transparent border-0 d-flex gap-2">
+            <a class="btn btn-outline-dark btn-sm" href="{{ product.get_absolute_url }}">Details</a>
+            <form method="post" action="{% url 'add_to_cart' product.id %}">
+              {% csrf_token %}
+              <input type="hidden" name="quantity" value="1">
+              <button class="btn btn-dark btn-sm" type="submit">Ajouter</button>
+            </form>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </section>
+
+  <section class="mt-5 reveal">
+    <div class="home-section-head">
+      <div>
+        <p class="section-kicker">Dans l'univers Doriane</p>
+        <h2>Notre selection en images</h2>
+      </div>
+      <a href="{% url 'shop' %}" class="text-decoration-none">Suivre nos actus</a>
+    </div>
+    <div class="gallery-grid home-gallery">
+      <div class="gallery-card">
+        <img src="/media/products/bonbon-xo.jpg" alt="Bonbon X.O">
+      </div>
+      <div class="gallery-card">
+        <img src="/media/products/hollywood-gum.jpg" alt="Chewing gum Hollywood">
+      </div>
+      <div class="gallery-card">
+        <img src="/media/products/cerelac-table.jpg" alt="Selection Doriane">
+      </div>
+    </div>
+  </section>
+
+  <section class="mt-5">
+    <div class="newsletter-card home-newsletter reveal">
+      <div>
+        <p class="section-kicker mb-2">Nouveautes</p>
+        <h2 class="mb-2">Recevez nos offres en avant-premiere</h2>
+        <p class="text-muted mb-0">Une fois par semaine, des bons plans et des nouveaux produits.</p>
+      </div>
+      <form class="newsletter-form" method="get">
+        <input class="form-control" type="email" placeholder="Votre email">
+        <button class="btn btn-accent" type="submit">Je m'inscris</button>
+      </form>
+    </div>
+  </section>
+</div>
 {% endblock %}
 
 

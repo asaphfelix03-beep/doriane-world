@@ -12,9 +12,3 @@ E-commerce Django pour produits alimentaires et beaute.
 
 ## Images produits
 Ajouter les images dans `media/products/` et les lier aux produits via l'admin.
-
-## Production
-- Mettre `DEBUG = False`
-- Renseigner `ALLOWED_HOSTS`
-- Utiliser PostgreSQL
-- Definir `SECRET_KEY` via variable d'environnement
