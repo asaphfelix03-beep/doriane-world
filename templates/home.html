@@ -18,15 +18,15 @@
           <span class="home-pill">Conseils personnalises</span>
         </div>
         <div class="home-stats">
-          <div class="home-stat">
+          <div class="home-stat glass-effect magic-hover">
             <div class="home-stat-label">Produits selectionnes</div>
             <div class="home-stat-value">+120</div>
           </div>
-          <div class="home-stat">
+          <div class="home-stat glass-effect magic-hover">
             <div class="home-stat-label">Preparation</div>
             <div class="home-stat-value">24h</div>
           </div>
-          <div class="home-stat">
+          <div class="home-stat glass-effect magic-hover">
             <div class="home-stat-label">Satisfaction</div>
             <div class="home-stat-value">4,9/5</div>
           </div>
@@ -92,7 +92,7 @@
     <div class="row g-3">
       {% for category in categories %}
       <div class="col-md-4">
-        <a class="category-card category-card-home" href="{% url 'category_detail' category.slug %}">
+        <a class="category-card category-card-home glass-effect magic-hover" href="{% url 'category_detail' category.slug %}">
           <div class="category-name">{{ category.name }}</div>
           <div class="category-desc">{{ category.description|default:"Selection Doriane World." }}</div>
           <span class="category-link">Explorer</span>
@@ -105,7 +105,7 @@
   <section class="home-highlight mt-5 reveal">
     <div class="row g-4 align-items-center">
       <div class="col-lg-6">
-        <div class="highlight-panel">
+        <div class="highlight-panel glass-effect">
           <p class="section-kicker">Collection du moment</p>
           <h2>Gourmandises et beaute pour chaque jour</h2>
           <p>Des marques fiables, des essentiels du quotidien, et des petits plaisirs choisis avec soin.</p>
@@ -140,7 +140,7 @@
     <div class="row g-3">
       {% for product in popular_products %}
       <div class="col-md-4 col-lg-3">
-        <div class="card product-card h-100 reveal">
+        <div class="card product-card h-100 reveal glass-effect magic-hover">
           <a href="{{ product.get_absolute_url }}" class="product-thumb">
             {% if product.is_promo %}
             <span class="badge-tag promo">Promo</span>
@@ -185,7 +185,7 @@
     <div class="row g-3">
       {% for product in promo_products %}
       <div class="col-md-4 col-lg-3">
-        <div class="card product-card h-100 reveal">
+        <div class="card product-card h-100 reveal glass-effect magic-hover">
           <a href="{{ product.get_absolute_url }}" class="product-thumb">
             {% if product.is_promo %}
             <span class="badge-tag promo">Promo</span>

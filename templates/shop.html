@@ -19,7 +19,7 @@
       </div>
     </div>
     <div class="col-lg-5">
-      <div class="shop-hero-card">
+      <div class="shop-hero-card glass-effect">
         <div class="shop-hero-title">Commande WhatsApp</div>
         <p class="text-muted mb-3">Envoyez votre panier et recevez une confirmation en temps reel.</p>
         <div class="d-flex gap-2 flex-wrap">
@@ -31,7 +31,7 @@
           <span>Paiement a la livraison</span>
         </div>
       </div>
-      <div class="quick-whatsapp-card mt-3">
+      <div class="quick-whatsapp-card mt-3 glass-effect">
         <div class="quick-title">Besoin d'aide ?</div>
         <div class="small text-muted">Une conseillere disponible pour vous guider.</div>
       </div>
@@ -77,7 +77,7 @@
     <div class="row g-3 mt-2">
       {% for product in products %}
       <div class="col-md-6 col-xl-4">
-        <div class="card product-card h-100 reveal">
+        <div class="card product-card h-100 reveal glass-effect magic-hover">
           <a href="{{ product.get_absolute_url }}" class="product-thumb">
             {% if product.is_promo %}
             <span class="badge-tag promo">Promo</span>
