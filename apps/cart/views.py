@@ -83,23 +83,3 @@ def quick_order_whatsapp(request):
     message = "Commande rapide Doriane World:\n" + "\n".join(lines)
     url = f"https://wa.me/{settings.WHATSAPP_NUMBER}?text={quote(message)}"
     return redirect(url)
-
-
-def quick_order_email(request):
-    cart = get_or_create_cart(request)
-    items = cart.items.select_related("product")
-    if not items.exists():
-        return redirect("shop")
-    sent_items = [{"name": item.product.name, "qty": item.quantity} for item in items]
-    lines = ["Commande rapide Doriane World:", ""]
-    for item in sent_items:
-        lines.append(f"- {item['name']} x {item['qty']}")
-    send_mail(
-        "Commande rapide - Doriane World",
-        "\n".join(lines),
-        settings.DEFAULT_FROM_EMAIL,
-        [settings.ADMIN_ORDER_EMAIL],
-        fail_silently=True,
-    )
-    items.delete()
-    return render(request, "orders/quick_confirmation.html", {"items": sent_items})

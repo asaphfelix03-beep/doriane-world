@@ -5,7 +5,6 @@ from .views import (
     update_cart,
     remove_from_cart,
     quick_order_whatsapp,
-    quick_order_email,
 )
 
 urlpatterns = [
@@ -14,5 +13,4 @@ urlpatterns = [
     path("cart/update/", update_cart, name="update_cart"),
     path("cart/remove/<int:item_id>/", remove_from_cart, name="remove_from_cart"),
     path("cart/quick/whatsapp/", quick_order_whatsapp, name="quick_order_whatsapp"),
-    path("cart/quick/email/", quick_order_email, name="quick_order_email"),
 ]

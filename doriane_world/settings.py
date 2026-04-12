@@ -65,17 +65,12 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = "doriane_world.wsgi.application"
-""""
+
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
         "NAME": BASE_DIR / "db.sqlite3",
     }
-
-}
-"""
-DATABASES = {
-    'default': dj_database_url.parse(env('_DATABASE_URL_'))
 }
 
 AUTH_PASSWORD_VALIDATORS = [

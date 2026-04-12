@@ -59,13 +59,14 @@ def checkout(request):
                 lines.append(f"- {item.product_name} x {item.quantity} = {item.line_total} EUR")
             lines.append("")
             lines.append(f"Total: {order.total_amount} EUR")
-            send_mail(
-                subject,
-                "\n".join(lines),
-                settings.DEFAULT_FROM_EMAIL,
-                [settings.ADMIN_ORDER_EMAIL],
-                fail_silently=True,
-            )
+            # Email notification disabled - using WhatsApp only
+            # send_mail(
+            #     subject,
+            #     "\n".join(lines),
+            #     settings.DEFAULT_FROM_EMAIL,
+            #     [settings.ADMIN_ORDER_EMAIL],
+            #     fail_silently=True,
+            # )
             return redirect("order_confirmation", order_id=order.id)
     else:
         form = CheckoutForm()
